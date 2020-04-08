@@ -9,7 +9,8 @@ module.exports = {
     },
     "env": {
         "browser": true,
-        "jquery": true
+        "jquery": true,
+        "es6": true
     },
     "rules": {
        
