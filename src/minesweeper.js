@@ -1,54 +1,71 @@
-const generatePlayerBoard = (numberOfRows, numberOfColumns)=>
-{
-var board = [];
-    for( let row = 0 ; row < numberOfRows; row++ );
-    {
-        var row =[];
-        for(let column = 0; column < numberOfColumns; column++)
-        {
+const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
+    const board = [];
+    for(let rowIndex= 0; rowIndex < numberOfRows; rowIndex++){
+        let row = [];
+        for(let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++){
             row.push(' ');
+            board.push(row);
         }
-        board.push(row);
+        return board;
     }
-    return board;
-};
-
-const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs)=>
-{
-var board = [];
-    for( let row = 0 ; row < numberOfRows; row++ );
-    {
-        var row =[];
-        for(let column = 0; column < numberOfColumns; column++)
-        {
+}
+const generateBombBoard = (numberOfRows, numberOfColumns,numberOfBombs) =>  {
+    const board = [];
+    for(let rowIndex= 0; rowIndex < numberOfRows; rowIndex++){
+        let row = [];
+        for(let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++){
             row.push(null);
+              }
+            board.push(row);
         }
-        board.push(row);
-    }
-    
-    
-    
-      
-    let numberOfBombsPlaced = 0;
-    while (numberOfBombsPlaced < numberOfBombs)// The while loop has the potential to place bombs on already existing bombs//
-    {
-       const randomRowIndex = Math.floor(Math.random()* numberOfRows);
-       const randomColumnIndex = Math.floor(Math.random()* numberOfColumns);
+       let numberOfBombsPlaced = 0;
+        while(numberOfBombsPlaced < numberOfBombs) // This while loop has the potential to place bombs on top of already existing bombs
+        {
+            let randomRowIndex = Math.floor(Math.random()* numberOfRows);
+            let randomColumnIndex = Math.floor(Math.random()* numberOfColumns);
+            board[randomRowIndex][randomColumnIndex] = 'B';
+            numberOfBombsPlaced++;
+        }
         
-        board[randomRowIndex][randomColumnIndex] = 'B';
-        numberOfBombsPlaced++;    
-    }
-    return board;
-    
-    }
-const printBoard = board =>
-{
-   
-   console.log(board.map(row => row.join(' | ')).join('.\n'));
+        
+        
+        
+        return board;
 };
 
-const playerBoard = generatePlayerBoard(3, 3);
-const bombBoard = generateBombBoard(3, 2, 2);
+const printBoard = board => {
+    board.map(row => row.join(' | '));
+   console.log(board.map(row => row.join (' | ')).join('\n'));
+}
+
+let playerBoard = generatePlayerBoard(3,4);
+let bombBoard = generateBombBoard(3,4, 5);
+
+console.log('Player Board (Char): ');
+printBoard(playerBoard);
+console.log('Bomb Board Bitcchessssss: ');
 printBoard(bombBoard);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
