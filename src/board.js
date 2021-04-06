@@ -1,33 +1,14 @@
-class Game {
-  constructor(numberOfRows, numberOfColumns, numberOfBombs){
-    this._board =  new Board(numberOfRows, numberOfColumns, numberOfBombs);
-  }
-
-  playMove(rowIndex,columnIndex){
-    this._board.flipTile(rowIndex,columnIndex);
-    if (this._board.playerBoard[rowIndex][columnIndex] === 'B'){
-      console.log("Game Over You Fucking Loser!!")
-      this._board.print();
-    }else if (!this._board.hasSafeTiles()){
-
-      console.log("You won you fucking Fag play again i know you wont win");
-    } else {
-      console.log("Current Board: ")
-      this._board.print();
-    }
-  }
-}
-
-
-
-
-class Board {
+export class Board {
   constructor(numberOfRows, numberOfColumns,numberOfBombs) {
   this._numberOfBombs = numberOfBombs;
   this._numberOfTiles = (numberOfRows * numberOfColumns);
   this._playerBoard = Board.generatePlayerBoard(numberOfRows, numberOfColumns)
   this._bombBoard = Board.generateBombBoard(numberOfRows, numberOfColumns,numberOfBombs)
   }
+
+
+
+
 get playerBoard(){
   return this._playerBoard
 }
@@ -158,20 +139,3 @@ while(numberOfBombsPlaced < numberOfBombs){
    return board;
  }
 };
-
-
-/*
- console.log('Player Board: ');
- print(playerBoard);
- console.log('Bomb Board: ');
- print(bombBoard);
- flipTile(playerBoard,bombBoard, 0, 1);
- console.log('Updated Player Board: ');
- print(playerBoard); */
-
-
-
- const g = new Game(3,3,3);
-
- g.playMove(0,0);
- g.playMove(1,1);
